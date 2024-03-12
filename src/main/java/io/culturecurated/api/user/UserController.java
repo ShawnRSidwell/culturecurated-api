@@ -1,5 +1,8 @@
 package io.culturecurated.api.user;
 
+import io.culturecurated.api.controller.AppController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -8,47 +11,37 @@ import java.util.UUID;
 @RequestMapping("/api/v1/users")
 public class UserController {
 
-    private final UserRepository USER_REPOSITORY;
+    Logger logger = LoggerFactory.getLogger(UserController.class);
+
+    private final UserService userService;
 
 
-    public UserController(UserRepository user_repository) {
-        this.USER_REPOSITORY = user_repository;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     @GetMapping("/{id}")
     public User getUserById(@PathVariable UUID id){
-        return USER_REPOSITORY.findById(id).get();
+        return userService.getUserById(id);
     }
 
     @GetMapping("/user/{username}")
     public User getUserByUsername(@PathVariable String username) {
-        return USER_REPOSITORY.findByUsername(username);
+        return userService.getUserByUsername(username);
     }
 
     @GetMapping("/email/{email}")
     public User getUserByEmail(@PathVariable String email) {
-        return USER_REPOSITORY.findByEmail(email);
+        return userService.getUserByEmail(email);
     }
 
     @PostMapping
     public User createUser(@RequestBody UserDTO userDTO){
-        User user = new User();
-        user.setUsername(userDTO.getUsername());
-        user.setPassword(userDTO.getPassword());
-        user.setEmail(userDTO.getEmail());
-        user.setProfilePicture(userDTO.getProfilePicture());
-        user.setBiography(userDTO.getBiography());
-        return USER_REPOSITORY.save(user);
+        return userService.createUser(userDTO);
     }
 
     @DeleteMapping("/{id}")
     public String deleteUser(@PathVariable UUID id){
-        try{
-            USER_REPOSITORY.findById(id).get();
-            USER_REPOSITORY.deleteById(id);
-            return "User Successfully Deleted";
-        } catch (Exception e ){
-            return "User Id not found";
-        }
+        return userService.deleteUser(id);
     }
 }

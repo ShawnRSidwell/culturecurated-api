@@ -1,1 +1,1 @@
-# culturecurated-api
+# Culture Curated API
