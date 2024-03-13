@@ -1,4 +1,4 @@
-package io.culturecurated.api.userlist.listitem;
+package io.culturecurated.api.userlists;
 
 public enum ItemCategory {
     TRAVEL("Travel"),

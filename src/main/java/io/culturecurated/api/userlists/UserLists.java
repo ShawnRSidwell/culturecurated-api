@@ -1,6 +1,7 @@
-package io.culturecurated.api.userlist;
+package io.culturecurated.api.userlists;
 
-import io.culturecurated.api.userlist.listitem.ItemCategory;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import io.culturecurated.api.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,23 +15,25 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserList {
+public class UserLists {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private BigInteger id;
 
-    @Column(name = "user_id")
-    private UUID userId;
     private String title;
     private String image;
     private String description;
 
-    @Column(name = "item_category")
-    private ItemCategory itemCategory;
+    @Enumerated(EnumType.STRING)
+    private ItemCategory category;
 
     @Column(name = "date_created")
     private LocalDateTime dateCreated;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @JsonIgnoreProperties("userLists")
+    private User user;
 }

@@ -1,4 +1,4 @@
-package io.culturecurated.api.userlist.listitem;
+package io.culturecurated.api.userlists.listitems;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import java.math.BigInteger;
 
 @Repository
-interface ListItemRepository extends JpaRepository<ListItem, BigInteger> {
+interface ListItemsRepository extends JpaRepository<ListItems, BigInteger> {
 }

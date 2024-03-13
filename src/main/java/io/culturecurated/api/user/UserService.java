@@ -1,7 +1,9 @@
 package io.culturecurated.api.user;
 
+import io.culturecurated.api.userlists.UserLists;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -42,5 +44,9 @@ public class UserService {
         } else {
             return "User Id not found";
         }
+    }
+
+    public List<UserLists> getUserListsByUserId(UUID userId) {
+        return USER_REPOSITORY.findUserListsById(userId);
     }
 }

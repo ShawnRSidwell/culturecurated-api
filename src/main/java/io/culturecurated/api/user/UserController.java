@@ -1,10 +1,11 @@
 package io.culturecurated.api.user;
 
-import io.culturecurated.api.controller.AppController;
+import io.culturecurated.api.userlists.UserLists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -35,6 +36,11 @@ public class UserController {
         return userService.getUserByEmail(email);
     }
 
+    @GetMapping("/{userId}/lists")
+    public List<UserLists> getUserListsByUserId(@PathVariable UUID userId){
+        return userService.getUserListsByUserId(userId);
+    }
+
     @PostMapping
     public User createUser(@RequestBody UserDTO userDTO){
         return userService.createUser(userDTO);
@@ -44,4 +50,6 @@ public class UserController {
     public String deleteUser(@PathVariable UUID id){
         return userService.deleteUser(id);
     }
+
+
 }

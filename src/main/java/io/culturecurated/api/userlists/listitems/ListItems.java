@@ -1,4 +1,4 @@
-package io.culturecurated.api.userlist.listitem;
+package io.culturecurated.api.userlists.listitems;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -7,14 +7,12 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigInteger;
 
-import java.time.LocalDateTime;
-import java.util.UUID;
-
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ListItem {
+@Table(name = "list_items")
+public class ListItems {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -1,14 +1,11 @@
-package io.culturecurated.api.userlist.listitem;
+package io.culturecurated.api.userlists.listitems;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import io.culturecurated.api.userlists.ItemCategory;
 
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public class ListItemDTO {
+public class ListItemsDTO {
 
 
 
