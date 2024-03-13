@@ -7,8 +7,6 @@ import java.util.UUID;
 
 public class ListItemsDTO {
 
-
-
     private UUID userId;
 
     private String title;

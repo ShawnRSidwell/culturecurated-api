@@ -22,5 +22,12 @@ public enum ItemCategory {
     public String getDisplayName(){
         return displayName;
     }
-
+    public static ItemCategory fromString(String str) {
+        for (ItemCategory category : ItemCategory.values()) {
+            if (category.displayName.equalsIgnoreCase(str)) {
+                return category;
+            }
+        }
+        throw new IllegalArgumentException("Invalid category: " + str);
+    }
     }

@@ -1,5 +1,6 @@
 package io.culturecurated.api.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.culturecurated.api.userlists.UserLists;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -21,10 +22,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    @Column(unique = true)
     private String username;
 
+    @JsonIgnore
     private String password;
 
+    @Column(unique = true)
     private String email;
 
     @Column(name="profile_picture")

@@ -2,13 +2,11 @@ package io.culturecurated.api.userlists;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
+
 
 @RestController
 @RequestMapping("/api/v1/lists")
@@ -24,5 +22,10 @@ public class UserListsController {
     @GetMapping("/{userId}")
     public List<UserLists> getUserListsByUserId(@PathVariable UUID userId){
         return userService.getUserListsByUserId(userId);
+    }
+
+    @GetMapping
+    public List<UserLists> getUserListsByCategory(@RequestParam ItemCategory category,  @RequestParam(defaultValue = "1") int page){
+        return userService.getListsByCategory(category, page -1);
     }
 }

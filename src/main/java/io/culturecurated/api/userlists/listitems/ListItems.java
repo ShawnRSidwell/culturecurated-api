@@ -1,5 +1,8 @@
 package io.culturecurated.api.userlists.listitems;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.culturecurated.api.user.User;
+import io.culturecurated.api.userlists.UserLists;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,8 +21,8 @@ public class ListItems {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private BigInteger id;
 
-    @Column(name = "list_id")
-    private BigInteger listId;
+    @Column(name = "list_item")
+    private String listItem;
 
     private String image;
 
@@ -28,6 +31,13 @@ public class ListItems {
     private String link;
 
     private String subcategory;
+
+
+    @ManyToOne
+    @JoinColumn(name = "list_id")
+    @JsonIgnore
+    private UserLists userLists;
+
 
 
 }
