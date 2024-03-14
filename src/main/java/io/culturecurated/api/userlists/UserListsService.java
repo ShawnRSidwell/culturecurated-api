@@ -25,10 +25,11 @@ public class UserListsService {
         ));
     }
 
-//    public List<UserLists> getListsByTitle(String title){
-//        return userListsRepository.findByTitle(title);
-//    }
-//    public UserLists getListById(BigInteger id){
-//        return userListsRepository.findById(id);
-//    }
+    public List<UserLists> getListsByTitle(String title, int page){
+        return userListsRepository.findFirst10ByTitle(title, PageRequest.of(page, 10
+        ));
+    }
+    public UserLists getListById(BigInteger id){
+        return userListsRepository.findById(id);
+    }
 }

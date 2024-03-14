@@ -24,8 +24,12 @@ public class UserListsController {
         return userService.getUserListsByUserId(userId);
     }
 
-    @GetMapping
-    public List<UserLists> getUserListsByCategory(@RequestParam ItemCategory category,  @RequestParam(defaultValue = "1") int page){
+    @GetMapping("/category/{category}")
+    public List<UserLists> getUserListsByCategory(@PathVariable ItemCategory category,  @RequestParam(defaultValue = "1") int page){
         return userService.getListsByCategory(category, page -1);
+    }
+    @GetMapping()
+    public List<UserLists> getListsByTitle(@RequestParam String title,  @RequestParam(defaultValue = "1") int page){
+        return userService.getListsByTitle(title, page -1);
     }
 }
